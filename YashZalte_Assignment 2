@@ -1,0 +1,67 @@
+package com;
+import java.util.*;
+class Student {
+String name;
+int id;
+int marks;
+char grade;
+static int count = 0;
+final String Course_Name = "Java Programming";
+Student() {
+name = "NA";
+id = 0;
+marks = 0;
+grade = 'N';
+count++;
+}
+Student(int i, String n, int m) {
+this.id = i;
+this.name = n;
+this.marks = m;
+this.grade = calculateGrade(m);
+count++;
+}
+char calculateGrade(int m) {
+if (m >= 90) return 'A';
+else if (m >= 75) return 'B';
+else if (m >= 60) return 'C';
+else if (m >= 50) return 'D';
+else return 'F';
+}
+void display() {
+System.out.println("Course Name: " + Course_Name);
+System.out.println("Name : " + name);
+System.out.println("ID : " + id);
+System.out.println("Marks : " + marks);
+System.out.println("Grade : " + grade);
+System.out.println("------------------------");
+}
+static int getStudentCount() {
+return count;
+}
+}
+public class Ass2 {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter number of students: ");
+int n = sc.nextInt();
+Student[] students = new Student[n];
+for (int i = 0; i < n; i++) {
+System.out.println("\nEnter details for Student " + (i + 1));
+System.out.print("ID: ");
+int id = sc.nextInt();
+sc.nextLine();
+System.out.print("Name: ");
+String name = sc.nextLine();
+System.out.print("Marks: ");
+int marks = sc.nextInt();
+students[i] = new Student(id, name, marks);
+}
+System.out.println("\n--- Student Performance Details ---");
+for (Student s : students) {
+s.display();
+}
+System.out.println("Total number of students created: " + Student.getStudentCount());
+sc.close();
+}
+}
